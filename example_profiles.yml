@@ -8,4 +8,4 @@ default:
       schema: dbt_oclarke #need to provide unique options based on initials
       method: service-account
       keyfile: .secrets/keyfilename.json #change to the actual filepath
-      location: EU #change to location of BigQuery project
+      location: US #change to location of BigQuery project
