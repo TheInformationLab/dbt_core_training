@@ -1,0 +1,11 @@
+default:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      threads: 32 #How many concurrent dbt requests to bigquery
+      database: training #where to create any objects in our development
+      schema: dbt_oclarke #need to provide unique options based on initials
+      method: service-account
+      keyfile: .secrets/keyfilename.json #change to the actual filepath
+      location: EU #change to location of BigQuery project
