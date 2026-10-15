@@ -1,0 +1,44 @@
+version: 2
+
+models:
+  - name: customers_with_order_history
+    description: "Customer Table with enriched order history"
+    columns:
+      - name: customer_id
+        description: "Foreign key from customers table"
+        data_tests:
+          - unique
+          - not_null
+
+      - name: full_name
+        description: ""
+
+      - name: surname
+        description: ""
+
+      - name: givenname
+        description: ""
+
+      - name: first_order_date
+        description: "The first date on which the customer made an order"
+
+      - name: first_non_returned_order_date
+        description: "The first data on which the customer made an order **which they didn't return**"
+
+      - name: most_recent_non_returned_order_date
+        description: "The most recent date the customer made an order which wasn't returned"
+
+      - name: order_count
+        description: "The total orders the customer has made"
+
+      - name: non_returned_order_count
+        description: "The total number of **unreturned** orders the customer has made"
+
+      - name: total_lifetime_value
+        description: "The total dollars the customer has spent. Excludes returned or pending returned orders"
+
+      - name: avg_non_returned_order_value
+        description: "Average dollars the customer spends on an order with us. Excludes returned or pending returned orders"
+
+      - name: order_ids
+        description: "Every order id the customer has made with us, in date and then order_id order"
