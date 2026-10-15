@@ -18,31 +18,31 @@ sources:
           - name: first_name
           - name: last_name
 
-  - name: orders
-    description: "Data of each order from POS"
-    config:
-      freshness:
-        warn_after:
-          count: 5
-          period: day
-        error_after:
-          count: 10
-          period: day
-        loaded_at_field: _etl_loaded_at
+      - name: orders
+        description: "Data of each order from POS"
+        config:
+          freshness:
+            warn_after:
+              count: 5
+              period: day
+            error_after:
+              count: 10
+              period: day
+            loaded_at_field: _etl_loaded_at
 
-    columns:
-      - name: id
-        description: "Order ID, primary key of orders table"
-        data_tests:
-          - unique
-          - not_null
-      - name: user_id
-        description: "Customer ID, foreign key linked to jaffle_shop.customers"
-        data_tests:
-          - relationships:
-              arguments:
-                to: source('jaffle_shop','customers')
-                field: id
-      - name: order_date
-      - name: status
-      - name: _etl_loaded_at
+        columns:
+          - name: id
+            description: "Order ID, primary key of orders table"
+            data_tests:
+              - unique
+              - not_null
+          - name: user_id
+            description: "Customer ID, foreign key linked to jaffle_shop.customers"
+            data_tests:
+              - relationships:
+                  arguments:
+                    to: source('jaffle_shop','customers')
+                    field: id
+          - name: order_date
+          - name: status
+          - name: _etl_loaded_at
