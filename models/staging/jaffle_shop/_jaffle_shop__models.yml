@@ -43,3 +43,49 @@ models:
 
       - name: is_not_return
         description: "Flag for order being returned or pending return"
+
+unit_tests:
+  - name: is_user_order_seq_right
+    description: checking that user_order_seq window function is working as expected
+    model: stg_jaffle_shop__orders
+
+    given:
+      - input: source('jaffle_shop','orders')
+        format: dict
+        rows:
+          # are pendings ignored?
+          - { user_id: 1, id: 1, order_date: "2026-01-01", status: "pending" }
+          - { user_id: 1, id: 2, order_date: "2026-01-01", status: "completed" }
+          # is order respected?
+          - { user_id: 1, id: 4, order_date: "2026-01-02", status: "completed" }
+          - { user_id: 1, id: 3, order_date: "2026-01-02", status: "completed" }
+          # does it restart with new users?
+          - { user_id: 2, id: 5, order_date: "2026-01-02", status: "completed" }
+
+    expect:
+      format: dict
+      rows:
+        - {
+            order_id: 2,
+            customer_id: 1,
+            order_date: "2026-01-01",
+            user_order_seq: 1,
+          }
+        - {
+            order_id: 4,
+            customer_id: 1,
+            order_date: "2026-01-02",
+            user_order_seq: 3,
+          }
+        - {
+            order_id: 3,
+            customer_id: 1,
+            order_date: "2026-01-02",
+            user_order_seq: 2,
+          }
+        - {
+            order_id: 5,
+            customer_id: 2,
+            order_date: "2026-01-02",
+            user_order_seq: 1,
+          }
