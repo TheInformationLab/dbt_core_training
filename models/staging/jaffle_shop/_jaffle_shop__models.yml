@@ -48,6 +48,8 @@ unit_tests:
   - name: is_user_order_seq_right
     description: checking that user_order_seq window function is working as expected
     model: stg_jaffle_shop__orders
+    config:
+      compute: local
 
     given:
       - input: source('jaffle_shop','orders')
