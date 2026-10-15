@@ -4,6 +4,7 @@ with source as (
 
     select * from {{ source('jaffle_shop', 'orders') }}
 
+    where status not in ('pending')
 ),
 
 renamed as (
