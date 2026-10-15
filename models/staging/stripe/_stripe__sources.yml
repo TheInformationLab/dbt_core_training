@@ -1,0 +1,49 @@
+version: 2
+
+sources:
+  - name: stripe
+    description: "Raw data loaded from Stripe payment system"
+    tables:
+      - name: payments
+        description: "All payments that have gone through stripe"
+        config:
+          freshness:
+            warn_after:
+              count: 5
+              period: day
+            error_after:
+              count: 10
+              period: day
+            loaded_at_field: _batched_at
+
+        columns:
+          - name: id
+            description: "Primary Key. Payment ID"
+            data_tests:
+              - unique
+              - not_null
+          - name: orderid
+            description: "Foreign key from jaffle shop orders table"
+            data_tests:
+              - relationships:
+                  arguments:
+                    to: source('jaffle_shop','orders')
+                    field: id
+
+          - name: paymentmethod
+            data_tests:
+              - accepted_values:
+                  arguments:
+                    values:
+                      - bank_transfer
+                      - coupon
+                      - credit_card
+                      - gift_card
+
+          - name: status
+
+          - name: amount
+
+          - name: created
+
+          - name: _batched_at
