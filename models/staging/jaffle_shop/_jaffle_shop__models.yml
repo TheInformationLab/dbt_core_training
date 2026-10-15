@@ -1,0 +1,45 @@
+version: 2
+
+models:
+  - name: stg_jaffle_shop__customers
+    description: "Staging version of customers table, with columns renames and new concatenated name column"
+    columns:
+      - name: customer_id
+        description: "Customer ID, primary key of table"
+        data_tests:
+          - unique
+          - not_null
+
+      - name: first_name
+      - name: last_name
+      - name: name
+        description: "concatenated first and last name"
+
+  - name: stg_jaffle_shop__orders
+    description: "Staging version of orders table, with columns renames and new derived columns"
+    columns:
+      - name: order_id
+        description: "Order ID, Primary key of table"
+        data_tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: "Foreign key from customers table"
+
+      - name: order_date
+        description: ""
+
+      - name: order_status
+        description: ""
+
+      - name: user_order_seq
+        description: "Incrementing value tracking each customer's order"
+        data_tests:
+          - dbt_utils.sequential_values:
+              arguments:
+                interval: 1
+                group_by_columns: ["customer_id"]
+
+      - name: is_not_return
+        description: "Flag for order being returned or pending return"
