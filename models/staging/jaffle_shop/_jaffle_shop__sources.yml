@@ -1,0 +1,48 @@
+version: 2
+
+sources:
+  - name: jaffle_shop
+    database: dbt-training-511114
+    schema: jaffle_shop
+    description: "Raw data loaded loaded from our Jaffle Shop application"
+
+    tables:
+      - name: customers
+        description: "Data on customers who have pruchased our jaffle sandwiches"
+        columns:
+          - name: id
+            description: "Customer ID, primary key of customers table"
+            data_tests:
+              - unique
+              - not_null
+          - name: first_name
+          - name: last_name
+
+  - name: orders
+    description: "Data of each order from POS"
+    config:
+      freshness:
+        warn_after:
+          count: 5
+          period: day
+        error_after:
+          count: 10
+          period: day
+        loaded_at_field: _etl_loaded_at
+
+    columns:
+      - name: id
+        description: "Order ID, primary key of orders table"
+        data_tests:
+          - unique
+          - not_null
+      - name: user_id
+        description: "Customer ID, foreign key linked to jaffle_shop.customers"
+        data_tests:
+          - relationships:
+              arguments:
+                to: source('jaffle_shop','customers')
+                field: id
+      - name: order_date
+      - name: status
+      - name: _etl_loaded_at
