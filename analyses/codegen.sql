@@ -1,6 +1,5 @@
-{{ codegen.generate_source(
-schema_name= 'stripe', 
-database_name= 'dbt-training-511114',
-include_descriptions= true,
-generate_columns= true
+{{ codegen.generate_model_yaml(
+    model_names= ['customers_with_order_history'],
+    upstream_descriptions = true ,
+    include_data_types = false
 ) }}
