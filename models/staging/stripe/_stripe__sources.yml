@@ -9,13 +9,42 @@ sources:
     tables:
       - name: payments
         description: "All payments have gone through stripe"
+        config:
+          freshness:
+            warn_after:
+              count: 5
+              period: day
+            error_after:
+              count: 10
+              period: day
+          loaded_at_field: _batched_at
+
         columns:
           - name: id
             description: "Payment id, Primary Key"
+            data_tests:
+              - unique 
+              - not_null 
+
           - name: orderid
             description: "Order id of order"
+            data_tests:
+              - relationships:
+                  arguments:
+                    to: source('jaffle_shop','orders')
+                    field: id
+
           - name: paymentmethod
             description: "Method of payment"
+            data_tests:
+              - accepted_values: 
+                  arguments: 
+                    values: 
+                      - credit_card
+                      - coupon
+                      - gift_card
+                      - bank_transfer
+
           - name: status
             description: "Status of order"
           - name: amount 
