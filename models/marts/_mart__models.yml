@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: customers_with_order_history
+    description: "Table at the customer level with enriched order history"
+    columns:
+      - name: customer_id
+        description: "Customer ID, Primary key of the **customers** table"
+
+      - name: full_name
+        description: "Contatenated first and last name of customer"
+
+      - name: surname
+        description: ""
+
+      - name: givenname
+        description: ""
+
+      - name: first_order_date
+        description: "The first date the customer made an order"
+
+      - name: first_non_returned_order_date
+        description: "The first date the customer made an order which they did not return"
+
+      - name: most_recent_non_returned_order_date
+        description: "The most recent date the customer made an order which they did not return"
+
+      - name: order_count
+        description: ""
+
+      - name: non_returned_order_count
+        description: ""
+
+      - name: total_lifetime_value
+        description: ""
+
+      - name: avg_non_returned_order_value
+        description: ""
+
+      - name: order_ids
+        description: "Every order id the customer has made with us in ascending order"

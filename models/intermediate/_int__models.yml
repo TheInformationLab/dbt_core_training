@@ -8,10 +8,10 @@ models:
         description: "Primary Key of table"
 
       - name: order_id
-        description: "Order ID, Primary Key of the orders table - foreign key in this table"
+        description: " {{doc('jaffle_shop__order_id')}} - foreign key in this table"
 
       - name: payment_method
-        description: "The method used to pay for the sandwich, one of:\n\n| method | Description |\n|:---|:---|\n| bank_transfer | Payment via BACS |\n| coupon | Used one of our coupons\n| credit_card | Payment via credit **or debit** card|\n| gift_card | Used on of our gift cards |"
+        description: "{{doc('stripe__payment_method')}}"
 
       - name: payment_status
         description: ""
