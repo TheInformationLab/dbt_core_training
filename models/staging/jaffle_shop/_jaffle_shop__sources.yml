@@ -2,6 +2,9 @@ version: 2
 
 sources:
   - name: jaffle_shop
+    database: dbt-training-511114
+    schema: jaffle_shop
+    description: "Raw data loaded from our Jaffle Shop application"
     tables:
       - name: orders
         columns:
