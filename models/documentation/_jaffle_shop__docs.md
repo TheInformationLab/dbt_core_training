@@ -10,7 +10,7 @@ Customer ID, Primary key of the **customers** table
 The method used to pay for the sandwich, one of:
 
 | method | Description |
-|: --- | :---|
+|:---|:---|
 | bank_transfer | Payment via BACS |
 | coupon | Used one of our coupons
 | credit_card | Payment via credit **or debit** card|
