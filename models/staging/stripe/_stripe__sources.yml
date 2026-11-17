@@ -1,0 +1,26 @@
+version: 2
+
+sources:
+  - name: stripe
+    database: dbt-training-511114
+    schema: stripe
+    description: "Raw data loaded from stripe system"
+
+    tables:
+      - name: payments
+        description: "All payments have gone through stripe"
+        columns:
+          - name: id
+            description: "Payment id, Primary Key"
+          - name: orderid
+            description: "Order id of order"
+          - name: paymentmethod
+            description: "Method of payment"
+          - name: status
+            description: "Status of order"
+          - name: amount 
+            description: "Amount of money - in cents"
+          - name: created
+            description: "When it was created"
+          - name: _batched_at
+            description: "Ingestion time"
