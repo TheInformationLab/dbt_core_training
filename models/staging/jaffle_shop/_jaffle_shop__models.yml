@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: stg_jaffle_shop__customers
+    description: "Staging version of customers table with renamed columns and new concatenated name column"
+    columns:
+      - name: customer_id
+        description: "{{ doc('jaffle_shop__customer_id' )}}"
+
+      - name: first_name
+        description: "First name of customer"
+
+      - name: last_name
+        description: "First initial of customer's last name"
+
+      - name: full_name
+        description: "Contatenated first and last name of customer"
+
+  - name: stg_jaffle_shop__orders
+    description: "Staging version of orders table, with columns renamed and new derived columns"
+    columns:
+      - name: order_id
+        description: "{{ doc('jaffle_shop__order_id' ) }}"
+
+      - name: customer_id
+        description: ""
+
+      - name: order_date
+        description: "Date of order"
+
+      - name: order_status
+        description: ""
+
+      - name: user_order_seq
+        description: "Incrementing value tracking each customer's order"
+
+      - name: is_not_return
+        description: "Flag for not being returned or return_pending"

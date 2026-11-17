@@ -1,11 +1,7 @@
-{{ codegen.generate_source(
-    name = 'jaffle_shop' ,
-    schema_name= 'jaffle_shop', 
-    database_name= 'dbt-training-511114' ,
-    table_names = ['orders', 'customers'] , 
-
-    generate_columns= true)
-
-
-    
+{{ codegen.generate_model_yaml(
+    model_names = ['stg_jaffle_shop__customers'
+    ,'stg_jaffle_shop__orders'],
+    upstream_descriptions = true,
+    include_data_types = false
+)
     }}
