@@ -1,0 +1,23 @@
+version: 2
+
+models:
+  - name: stg_stripe__payments
+    description: "Staging version of Stripe payments table with renames"
+    columns:
+      - name: payment_id
+        description: "Primary Key of table"
+
+      - name: order_id
+        description: "{{ doc('jaffle_shop__order_id')}} - foreign key in this table"
+
+      - name: payment_method
+        description: "{{ doc('stripe__payment_method') }}"
+
+      - name: payment_status
+        description: ""
+
+      - name: order_value_dollars
+        description: "Raw amount in cents, converted into dollars"
+
+      - name: payment_date
+        description: ""

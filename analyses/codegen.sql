@@ -1,6 +1,5 @@
 {{ codegen.generate_model_yaml(
-    model_names = ['stg_jaffle_shop__customers'
-    ,'stg_jaffle_shop__orders'],
+    model_names = ['stg_stripe__payments'],
     upstream_descriptions = true,
     include_data_types = false
 )
