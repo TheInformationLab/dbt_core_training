@@ -9,21 +9,29 @@ sources:
       - name: orders
         columns:
           - name: id
+            description: " {{ doc('jaffle_shop__order_id' ) }} "
             data_type: int64
           - name: user_id
+            description: " {{ doc('jaffle_shop__customer_id' )}} - foreign key in this table"
             data_type: int64
           - name: order_date
+            description: "Date of order"
             data_type: date
           - name: status
+            description: "Order status"
             data_type: string
           - name: _etl_loaded_at
+            description: "When data was loaded into GCP"
             data_type: datetime
 
       - name: customers
         columns:
           - name: id
             data_type: int64
+            description: "{{ doc('jaffle_shop__customer_id' )}}"
           - name: first_name
             data_type: string
+            description: "First name of customer"
           - name: last_name
             data_type: string
+            description: "First initial of customer's last name"
